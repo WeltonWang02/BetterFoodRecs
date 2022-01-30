@@ -4,7 +4,7 @@ body {
 }
 
 .header {
-    height: 500px;
+    height: 100vh;
     background: linear-gradient(25deg, #ED001C, #FF4500);
     position: relative;
 }
@@ -18,8 +18,8 @@ body {
     position: absolute;
     text-align: center;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 40px;
+    transform: translate(-50%, 50%);
+    bottom: 50%;
     width: 100%;
 }
 
