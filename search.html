@@ -56,9 +56,9 @@
 			if (data_2['results'][0]['name'].length > 1){
 			  z.innerText = data_2['results'][0]['name'];
 	                  if(data_2['results'][0]['status'] == 'ACTIVE'){
-				var k += '<div class="listing-status status-active">Active</div>';
+				var k = '<div class="listing-status status-active">Active</div>';
 			  } else {
-				var k += '<div class="listing-status status-failed">Permanently Closed</div>';
+				var k = '<div class="listing-status status-failed">Permanently Closed</div>';
 			  }
 			  z.outerHTML += k + '<div class="listing-address">' + data_2['results'][0]['address'] + '</div>';
 			}
