@@ -45,7 +45,7 @@
             document.getElementById("listing").innerHTML = p + '<div class="listing"> <div class="listing-title">'+item[0]+'</div> <div class="listing-sim"><b>AKA:</b> '+data['names'][item[0]].join(", ")+'</div> <div class="listing-rating '+rc+'">'+Math.round(item[1]*10)/10+'</div> </div>' + document.getElementById("listing").innerHTML;
             p = '';
 	    if (item[1] > 11){
-		    fetch('https://api.betterfoodrecs.com/api/v1/invoke/?'+"name=" + item[0] + "&location=" + location_c, {
+		    fetch('https://api.betterfoodrecs.com/api/v1/invoke/?'+"name=" + item[0] + "&location=" + location_c + "&food=" + food_c, {
 		      method: 'GET'
 		    }).then(function(response) { if(!response.ok) { throw new Error("not ok"); } return response.json() }).then((data_2)=>{
 		      if(data_2.stat === "fail") {
