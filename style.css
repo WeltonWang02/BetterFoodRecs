@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+.listing-status.status-failed {
+    background: #b30000;
+}
+
 .header {
     height: 100vh;
     background: linear-gradient(25deg, #ED001C, #FF4500);
