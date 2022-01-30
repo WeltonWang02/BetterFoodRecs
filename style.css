@@ -74,6 +74,7 @@ body {
 .listing-title {
     font-weight: 700;
     font-size: 30px;
+    display: inline-block;
 }
 
 .listing-sim {
@@ -199,4 +200,15 @@ a.nav-menu-item {
 .listing-address {
     margin: 10px 0px;
     line-height: 22px;
+}
+
+.listing-status {
+    display: inline-block;
+    background: green;
+    color: white;
+    vertical-align: super;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 3px;
 }
