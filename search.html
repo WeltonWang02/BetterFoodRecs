@@ -1,0 +1,116 @@
+<head>
+	<title>Better Food Recommendations - Search</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+	<script>
+
+    function getElementbyInnerText(text){
+      for (var a of document.querySelectorAll(".listing-title")) {
+      if (a.innerText == text) {
+        return a;
+      }
+    }
+    }
+		document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        var food_c = urlParams.get('food');
+        var location_c = urlParams.get('location');
+        document.getElementById("query-text").innerText = food_c + " in " + location_c;
+        fetch('https://api.betterfoodrecs.com/api/v1/inspire/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          },
+          body: "food=" + food_c + "&location=" + location_c
+        }).then(function(response) { if(!response.ok) { throw new Error("not ok"); } return response.json() }).then((data)=>{
+          if(data.stat === "fail") {
+            throw new Error(data.message);
+          }
+          var z = 0;
+          var p = '';
+          [...data['list']].forEach((item) => {
+            if (item[1] > 0){
+              rc = "rating-positive";
+            } else {
+              rc = "rating-negative"
+            }
+            if (item[1] > 12 && z == 0){
+              z = 1;
+              p = '<div class="divider"><p>The below restaurants may not be as accurate. </p></div>';
+            }
+            document.getElementById("listing").innerHTML = p + '<div class="listing"> <div class="listing-title">'+item[0]+'</div> <div class="listing-sim"><b>AKA:</b> '+data['names'][item[0]].join(", ")+'</div> <div class="listing-rating '+rc+'">'+Math.round(item[1]*10)/10+'</div> </div>' + document.getElementById("listing").innerHTML;
+            p = '';
+            fetch('https://api.betterfoodrecs.com/api/v1/invoke/?'+"name=" + item[0] + "&location=" + location_c, {
+              method: 'GET'
+            }).then(function(response) { if(!response.ok) { throw new Error("not ok"); } return response.json() }).then((data_2)=>{
+              if(data_2.stat === "fail") {
+                throw new Error(data_2.message);
+              }
+              //if (!data_2['results'][0]['name'] === null && !data_2['results'][0]['name'] === undefined){
+                var z = getElementbyInnerText(item[0]);
+                if (data_2['results'][0]['name'].length > 1){
+                  z.innerText = data_2['results'][0]['name'];
+                  z.outerHTML += '<div class="listing-address">' + data_2['results'][0]['address'] + '</div>';
+                }
+              //}
+            }).catch(function(err) {
+              console.log(err);
+            });
+           
+        })
+        document.getElementById("loading").style.display = "none";
+        }).catch(function(err) {
+          document.getElementById("loading-text").innerText = "Error.";
+          document.getElementById("loading-text-below").innerText = "Please try again.";
+        });
+
+        setTimeout(function(){
+          document.getElementById("loading-text").innerText = "Parsing Comments...";
+          setTimeout(function(){
+            document.getElementById("loading-text").innerText = "Extracting Restaurants...";
+            setTimeout(function(){
+              document.getElementById("loading-text").innerText = "Calculating Relevancy...";
+              setTimeout(function(){
+                document.getElementById("loading-text").innerText = "Extracting Sentiment...";
+                setTimeout(function(){
+                  document.getElementById("loading-text").innerText = "Compiling Results...";
+                  setTimeout(function(){
+                    document.getElementById("loading-text").innerText = "Sorting Similiar Restaurants...";
+                    setTimeout(function(){
+                      document.getElementById("loading-text").innerText = "Hold on...This is taking a bit longer than expected.";
+                    }, ((Math.floor(Math.random() * 18)) + 12) * 1000);
+                  }, ((Math.floor(Math.random() * 12)) + 6) * 1000);
+                }, ((Math.floor(Math.random() * 15)) + 9) * 1000);
+              }, ((Math.floor(Math.random() * 15)) + 9) * 1000);
+            }, ((Math.floor(Math.random() * 12)) + 7) * 1000);
+          }, ((Math.floor(Math.random() * 7)) + 4) * 1000);
+        }, ((Math.floor(Math.random() * 5)) + 2) * 1000);
+
+      });
+	</script>
+</head>
+
+<body>
+	<div class="header header-short">
+		<div class="header-bar">
+            <div class="nav-item"><a href="/" style="text-decoration: none;"><div class="site-title">BetterFoodRecs</div></a>
+        </div><div class="nav-item nav-menu"><a href="/about" class="nav-menu-item">About</a><a href="/workings" class="nav-menu-item">How it Works</a></div></div>
+		<div class="header-input-section">
+			<div class="header-title">
+				<h1 id="query-text"></h1>
+			</div>
+		</div>
+	</div>
+  
+	<div class="container"id="listing">
+    <div class="loading" id="loading">
+      <div class="lds-ripple"><div></div><div></div></div>
+      <div class="loading-text" id="loading-text">Fetching results...</div>
+      <div class="loading-text-below" id="loading-text-below">This may take up to 90 seconds.</div>
+    </div>
+	</div>
+</body>
