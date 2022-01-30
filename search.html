@@ -44,7 +44,7 @@
             }
             document.getElementById("listing").innerHTML = p + '<div class="listing"> <div class="listing-title">'+item[0]+'</div> <div class="listing-sim"><b>AKA:</b> '+data['names'][item[0]].join(", ")+'</div> <div class="listing-rating '+rc+'">'+Math.round(item[1]*10)/10+'</div> </div>' + document.getElementById("listing").innerHTML;
             p = '';
-	    if (item[1] > 8){
+	    if (item[1] > 11){
 		    fetch('https://api.betterfoodrecs.com/api/v1/invoke/?'+"name=" + item[0] + "&location=" + location_c, {
 		      method: 'GET'
 		    }).then(function(response) { if(!response.ok) { throw new Error("not ok"); } return response.json() }).then((data_2)=>{
@@ -55,6 +55,11 @@
 			var z = getElementbyInnerText(item[0]);
 			if (data_2['results'][0]['name'].length > 1){
 			  z.innerText = data_2['results'][0]['name'];
+	                  if(data_2['results'][0]['address'] == 'ACTIVE'){
+				z.outerHTML += '<div class="listing-status status-active">Active</div>';
+			  } else {
+				z.outerHTML += '<div class="listing-status status-failed">Permanently Closed</div>';
+			  }
 			  z.outerHTML += '<div class="listing-address">' + data_2['results'][0]['address'] + '</div>';
 			}
 		      //}
