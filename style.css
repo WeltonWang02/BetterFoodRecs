@@ -220,3 +220,35 @@ a.nav-menu-item {
 .body-p {
     font-size: 18px;
 }
+
+.body-p {
+    font-size: 18px;
+}
+
+.code-p {
+    font-family: monospace;
+    padding-left: 25px;
+    font-size: 16px;
+}
+
+.code-p small {
+    margin-top: 10px;
+    display: inline-block;
+    color: #5e5e5e;
+}
+
+span.orange {
+    color: #d71d00;
+}
+
+span.purple {
+    color: purple;
+}
+
+span.blue {
+    color: blue;
+}
+
+span.dblue {
+    color: #000054;
+}
