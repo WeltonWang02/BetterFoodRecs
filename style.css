@@ -252,3 +252,11 @@ span.blue {
 span.dblue {
     color: #000054;
 }
+
+span.green {
+    color: darkgreen;
+}
+
+span.red {
+    color: #bb0000;
+}
