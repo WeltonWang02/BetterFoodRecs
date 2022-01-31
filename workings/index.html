@@ -44,7 +44,7 @@ def</span> <span class="purple">__parse_c</span>(self, string):<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strip out newlines, replace them with a period, and strip out and repeating spaces.<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove markdown links, and run preprocessing \<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""
-    <br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string = re.<span class="purple">sub</span>(<span class="darkblue">(?:\n|\r|\\n|\\r)+"</span>, ". ", re.sub(<span class="darkblue">r"(\.|\?|!|:) *(?:\n|\r|\\n|\\r)+"</span>, r"\1 ", string))<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string = re.<span class="purple">sub</span>(<span class="darkblue">r'\[[^\]]+\]\([^)]+\)'</span>, "", string)<br>
+    <br></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string = re.<span class="purple">sub</span>(<span class="darkblue">(?:\n|\r|\\n|\\r)+"</span>, ". ", re.<span class="purple">sub</span>(<span class="darkblue">r"(\.|\?|!|:) *(?:\n|\r|\\n|\\r)+"</span>, r"\1 ", string))<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string = re.<span class="purple">sub</span>(<span class="darkblue">r'\[[^\]]+\]\([^)]+\)'</span>, "", string)<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">return</span> string.<span class="purple">replace</span>('&amp;', '&amp;').<span class="purple">replace</span>('\\', "").<span class="purple">replace</span>("\t", "").<span class="purple">replace</span>('’', "'")<br><br>
 
     <span class="red">&nbsp;&nbsp;&nbsp;&nbsp;def</span> <span class="purple">__rec_pull_replies</span>(self, comment, comments):<br>
