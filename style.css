@@ -68,6 +68,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     margin-top: 30px;
+    padding: 0px 23px;
 }
 
 .listing {
@@ -262,4 +263,52 @@ span.green {
 
 span.red {
     color: #bb0000;
+}
+
+@media(max-width: 540px){
+    .search-text {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 12px
+    }
+    .header-title{
+        font-size:21px;
+    }
+}
+
+@media(max-width: 355px){
+    .header-title{
+        font-size:18px;
+    }
+}
+
+@media(max-width:430px){
+    .nav-menu{
+        margin-top: 8px;
+        display: block;
+        width: 100%;
+    }   
+    a.nav-menu-item{
+        margin-left:0px;
+    }
+    .body-img{
+      width: 100%;
+      padding:0px;
+    }
+    #query-text{
+      margin-top:90px;
+    }
+    .listing-status{
+      display: block;
+      margin-left:0px;
+      width: fit-content;
+      margin-top:10px;
+    }
+    .listing-rating{
+      position: relative;
+      transform: none;
+      left: 0px;
+      margin-top: 12px;
+      text-align: center;
+    }
 }
