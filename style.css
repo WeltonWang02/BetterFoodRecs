@@ -6,7 +6,10 @@ body {
 .listing-status.status-failed {
     background: #b30000;
 }
-
+.body-img {
+    width: calc(100% - 60px);
+    padding: 30px;
+}
 .header {
     height: 100vh;
     background: linear-gradient(16deg, #df0b00, #ff7702);
