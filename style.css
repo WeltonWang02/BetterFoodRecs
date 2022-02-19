@@ -10,6 +10,38 @@ body {
     width: calc(100% - 60px);
     padding: 30px;
 }
+.explain {position: relative;margin-bottom: 13px;text-align: right;}
+
+.tooltip {
+    display: inline-block;
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.tooltip-open {
+    max-width: 250px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 3px;
+    color: black;
+    margin-top: -19px;
+    z-index: 9999;
+    position: absolute;
+    opacity: 0;
+    height: 10px;
+    overflow: hidden;
+    text-align: left;
+    right: 0;
+    border: 1px solid #e7e7e7;
+}
+
+.tooltip-open:hover {
+    opacity: 1;
+    height: auto;
+    margin-top: -9px;
+}
 .header {
     height: 100vh;
     background: linear-gradient(16deg, #df0b00, #ff7702);
