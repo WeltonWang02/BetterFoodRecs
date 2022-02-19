@@ -10,7 +10,7 @@ body {
     width: calc(100% - 60px);
     padding: 30px;
 }
-.explain {position: relative;margin-bottom: 13px;text-align: right;}
+.explain {position: absolute;margin-bottom: 13px;text-align: right;top: -20px;right: 0px;padding: 0 23px;}
 
 .tooltip {
     display: inline-block;
@@ -26,7 +26,7 @@ body {
     padding: 8px;
     border-radius: 3px;
     color: black;
-    margin-top: -10px;
+    margin-top: -19px;
     z-index: 9999;
     position: absolute;
     opacity: 0;
@@ -40,7 +40,7 @@ body {
 .tooltip-open:hover {
     opacity: 1;
     height: auto;
-    margin-top: -10px;
+    margin-top: -9px;
 }
 .header {
     height: 100vh;
@@ -101,6 +101,8 @@ body {
     margin: 0 auto;
     margin-top: 30px;
     padding: 0px 23px;
+    position: relative;
+    padding-top: 15px;
 }
 
 .listing {
