@@ -60,7 +60,7 @@
 			  } else {
 				var k = '<div class="listing-status status-failed">Permanently Closed</div>';
 			  }
-			  z.outerHTML += k + '<div class="listing-address"><a href="https://google.com/?q=' + data_2['results'][0]['name'] + ' ' + location_c +'">'+data_2['results'][0]['address']+'</a></div>';
+			  z.outerHTML += k + '<div class="listing-address"><a href="https://google.com/search?q=' + encodeURIComponent(data_2['results'][0]['name']) + ' ' + encodeURIComponent(location_c) +'">'+data_2['results'][0]['address']+'</a></div>';
 			}
 		      //}
 		    }).catch(function(err) {
