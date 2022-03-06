@@ -42,8 +42,10 @@
               z = 1;
               p = '<div class="divider"><p>The below restaurants may not be as accurate. </p></div>';
             }
-            document.getElementById("listing").innerHTML = p + '<div class="listing"> <div class="listing-title">'+item[0]+'</div> <div class="listing-sim"><b>AKA:</b> '+data['names'][item[0]].join(", ")+'</div> <div class="listing-rating '+rc+'">'+Math.round(item[1]*10)/10+'</div> </div>' + document.getElementById("listing").innerHTML;
-            p = '';
+	    if (item[1] > 6) {
+		    document.getElementById("listing").innerHTML = p + '<div class="listing"> <div class="listing-title">'+item[0]+'</div> <div class="listing-sim"><b>AKA:</b> '+data['names'][item[0]].join(", ")+'</div> <div class="listing-rating '+rc+'">'+Math.round(item[1]*10)/10+'</div> </div>' + document.getElementById("listing").innerHTML;
+	    		p = '';
+	    }
 	    if (item[1] > 11){
 		    fetch('https://api.betterfoodrecs.com/api/v1/invoke/?'+"name=" + item[0] + "&location=" + location_c + "&food=" + food_c, {
 		      method: 'GET'
