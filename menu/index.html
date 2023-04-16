@@ -1,0 +1,86 @@
+
+<head>
+    <title>Better Food Recommendations - Menu Search</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://betterfoodrecs.com/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="header-bar">
+            <div class="nav-item"><a href="/" style="text-decoration: none;"><div class="site-title">BetterFoodRecs</div></a>
+        </div><div class="nav-item nav-menu"><a href="/about" class="nav-menu-item">About</a><a href="/workings" class="nav-menu-item">How it Works</a></div></div>
+        <div class="header-input-section">
+          <div class="header-title">
+              <h1>Menu Recommendations</h1>
+          </div>
+          <div class="header-search">
+              <form id="location-form">
+                <input type="text" id="location-search-box" class="search-section search-text" placeholder="Search for a location">
+                <button  class="search-section search-icon" type="submit">Submit</button>
+              </form>
+          </div>
+          <style>
+            /* Set the size of the search box input field */
+            #location-search-box {
+              width: 300px;
+              padding: 10px;
+              border: 1px solid #ccc;
+            }
+          </style>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8buxJtU6K4uRSDdiVHFGOSYVcAfYWuuU&libraries=places"></script>
+          <script>
+            // Initialize the Google Places Autocomplete service
+            function initialize() {
+              // Get the HTML input element for the autocomplete search box
+              var input = document.getElementById('location-search-box');
+        
+              // Create the autocomplete object, restricting the search to geographical
+              // location types
+              var autocomplete = new google.maps.places.Autocomplete(input);
+              var selectedPlace;
+        
+              // When the user selects an address from the dropdown, populate the address
+              // fields in the form and store the selected place object
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                selectedPlace = autocomplete.getPlace();
+                // You can use the 'selectedPlace' object to get more details about the selected place
+              });
+        
+              // Listen for the form submit event
+              document.getElementById('location-form').addEventListener('submit', function(event) {
+                // Prevent the form from being submitted in the default way
+                event.preventDefault();
+        
+                // Use the selected place details as needed
+                if (selectedPlace) {
+                  var placeId = selectedPlace.place_id; // Get the place ID from the selected place object
+                  window.location = "/food-search?location=" + placeId + "&name=" + selectedPlace.name;
+                } else {
+                  //do nothing
+                }
+              });
+            }
+        
+            // Call the initialize function to set up the autocomplete search box
+            google.maps.event.addDomListener(window, 'load', initialize);
+          </script>        
+        </div>
+    </div>
+
+    </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7QPJK74EEM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7QPJK74EEM');
+</script>
+
+</body>
